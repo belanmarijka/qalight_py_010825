@@ -19,7 +19,7 @@ print("text4:", text4)
 print("text5:", text5)
 
 # Завдання 3.1: Перевірте, чи text1 починається з "Hello"
-starts_with_hello = # Ваш код тут
+starts_with_hello = 1# Ваш код тут
 
 # Завдання 3.2: Перевірте, чи text1 закінчується на "!"
 ends_with_exclamation = # Ваш код тут

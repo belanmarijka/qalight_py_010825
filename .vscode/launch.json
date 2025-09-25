@@ -22,7 +22,9 @@
             "args": [
                 "-v", "-s",
                 "${file}",
-                "-k use_webelement"
+                //"-k use_webelement",
+                //"--junitxml=report.xml",
+                "--html=report.html"
                ],
             "purpose": ["debug-test"]
         }

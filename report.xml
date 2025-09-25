@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="3" time="23.887" timestamp="2025-09-25T20:09:52.769077+03:00" hostname="desktop"><testcase classname="lesson_14.test_lesson_14" name="test_example_implicitly_wait" time="8.300" /><testcase classname="lesson_14.test_lesson_14" name="test_example_with_explicit_wait" time="7.976" /><testcase classname="lesson_14.test_lesson_14" name="test_example_with_use_webelement" time="7.188"><failure message="assert 'Example Domain' != 'Example Domain'&#10; +  where 'Example Domain' = &lt;selenium.webdriver.remote.webelement.WebElement (session=&quot;32d55f63-eab3-4386-bcab-fe00f566a89e&quot;, element=&quot;da9623c4-a00a-474b-9bfc-9587d7e1239b&quot;)&gt;.text">driver = &lt;selenium.webdriver.firefox.webdriver.WebDriver (session="32d55f63-eab3-4386-bcab-fe00f566a89e")&gt;
+
+    def test_example_with_use_webelement(driver):
+        # driver = webdriver.Firefox()
+        # driver.get("https://www.example.com")
+        heading = webelement(driver, '//h1')
+&gt;       assert heading.text != "Example Domain"
+E       assert 'Example Domain' != 'Example Domain'
+E        +  where 'Example Domain' = &lt;selenium.webdriver.remote.webelement.WebElement (session="32d55f63-eab3-4386-bcab-fe00f566a89e", element="da9623c4-a00a-474b-9bfc-9587d7e1239b")&gt;.text
+
+lesson_14\test_lesson_14.py:36: AssertionError</failure></testcase></testsuite></testsuites>

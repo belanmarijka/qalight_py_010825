@@ -33,7 +33,7 @@ def test_example_with_use_webelement(driver):
     # driver = webdriver.Firefox()
     # driver.get("https://www.example.com")
     heading = webelement(driver, '//h1')
-    assert heading.text == "Example Domain"
+    assert heading.text != "Example Domain"
     # driver.close()
 
 # presence_of_element_located 

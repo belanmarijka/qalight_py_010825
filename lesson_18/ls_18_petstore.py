@@ -14,15 +14,44 @@ def get_pet(pet_id:int):
         print(f"Exceptions: {e}")
     return r
 
-def post_pet(pet_id:int, name:str):
+def post_pet_id(pet_id:int, name:str):
+    r = None
+    endpoint = "pet"
+    data = { 
+        "name": name,
+        "status": "available"
+    }
+    try:
+        response = requests.post(f"{base_url}/{endpoint}/{pet_id}", data=data)
+        # response.raise_for_status()  # Викликає виняток, якщо код не 2xx але нам не треба, бо мб 400 і 404
+        r = response.json()
+    except (HTTPError, ConnectionError, Timeout, JSONDecodeError) as e:
+        print(f"Exceptions: {e}")
+    return r
+
+def post_pet(name:str):
     r = None
     endpoint = "pet"
     data = {
+            "id": 0,
+            "category": {
+                "id": 0,
+                "name": "string"
+            },
             "name": name,
+            "photoUrls": [
+                "string"
+            ],
+            "tags": [
+                {
+                "id": 0,
+                "name": "string"
+                }
+            ],
             "status": "available"
             }
     try:
-        response = requests.post(f"{base_url}/{endpoint}/{pet_id}", data=data)
+        response = requests.post(f"{base_url}/{endpoint}", json=data)
         # response.raise_for_status()  # Викликає виняток, якщо код не 2xx але нам не треба, бо мб 400 і 404
         r = response.json()
     except (HTTPError, ConnectionError, Timeout, JSONDecodeError) as e:
@@ -59,10 +88,10 @@ def autorizate_me(my_response):
     return my_response
 
 
-
 if __name__ == "__main__":
-    print(get_pet(3))
+    print(get_pet(9223372036854775807))
     print(get_pet(5))
     print(get_pet("derrere"))
-    print(post_pet(5, "Patron"))
+    print(post_pet_id(5, "Patron"))
     print(delete_pet(5))
+    print(post_pet("Patron"))

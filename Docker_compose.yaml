@@ -1,0 +1,43 @@
+version: '3.9'
+
+services:
+  jenkins:
+    image: jenkins/jenkins:lts-jdk17
+    container_name: jenkins
+    user: root
+    ports:
+      - "8080:8080"      # веб-інтерфейс Jenkins
+      - "50000:50000"    # для Jenkins agent
+    volumes:
+      - jenkins_home:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - JAVA_OPTS=-Djenkins.install.runSetupWizard=false
+
+  selenium:
+    image: selenium/standalone-chrome:latest
+    container_name: selenium_chrome
+    shm_size: 2gb
+    ports:
+      - "4444:4444"      # порт WebDriver
+    environment:
+      - SE_NODE_MAX_SESSIONS=5
+      - SE_NODE_SESSION_TIMEOUT=120
+
+  python-runner:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: pytest_runner
+    depends_on:
+      - selenium
+    environment:
+      - SELENIUM_REMOTE_URL=http://selenium:4444/wd/hub
+      - PYTHONUNBUFFERED=1
+    volumes:
+      - .:/app
+    working_dir: /app
+    command: pytest -v --disable-warnings
+
+volumes:
+  jenkins_home:

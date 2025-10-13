@@ -12,7 +12,7 @@ pipeline {
                 sh '''
                     python3 -m venv venv
                     . venv/bin/activate
-                    pip install --upgrade pip
+                    pip install --upgrade pip==24.3.1
                     pip install -r requirements.txt
                 '''
             }
